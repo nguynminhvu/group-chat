@@ -1,0 +1,309 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Chat.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Chat.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\Images\\UserAvatars\\dxwnjabw.png",
+      "PackagePath": "staticwebassets\\Images\\UserAvatars\\dxwnjabw.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\Images\\UserAvatars\\lek3pbno.png",
+      "PackagePath": "staticwebassets\\Images\\UserAvatars\\lek3pbno.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\css\\app.css",
+      "PackagePath": "staticwebassets\\assets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\fonts\\MaterialIcons-Regular.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\MaterialIcons-Regular.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\fonts\\MaterialIcons-Regular.html",
+      "PackagePath": "staticwebassets\\assets\\fonts\\MaterialIcons-Regular.html"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\fonts\\MaterialIcons-Regular.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\MaterialIcons-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\fonts\\MaterialIcons-Regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\MaterialIcons-Regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-10.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-11.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-11.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-12.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-12.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-13.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-13.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-8.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\avatar\\avatar-9.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\avatar\\avatar-9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\chat-bg.png",
+      "PackagePath": "staticwebassets\\assets\\img\\chat-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\chat-download.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\chat-download.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\assets\\img\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\group-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\group-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\group-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\group-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\group-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\group-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\group-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\group-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\group-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\group-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\login-email.png",
+      "PackagePath": "staticwebassets\\assets\\img\\login-email.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\logo-full.png",
+      "PackagePath": "staticwebassets\\assets\\img\\logo-full.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\logo.png",
+      "PackagePath": "staticwebassets\\assets\\img\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\otp-bg.png",
+      "PackagePath": "staticwebassets\\assets\\img\\otp-bg.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\signup-email.png",
+      "PackagePath": "staticwebassets\\assets\\img\\signup-email.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\status-icon.png",
+      "PackagePath": "staticwebassets\\assets\\img\\status-icon.png"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\status1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\status1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\top-curve-bg.html",
+      "PackagePath": "staticwebassets\\assets\\img\\top-curve-bg.html"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\img\\vidio-call-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\vidio-call-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\js\\jquery-3.6.0.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery-3.6.0.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\js\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery-ui.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\js\\jquery.nicescroll.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\jquery.nicescroll.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\js\\script.js",
+      "PackagePath": "staticwebassets\\assets\\js\\script.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fancybox\\jquery.fancybox.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancybox\\jquery.fancybox.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fancybox\\jquery.fancybox.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fancybox\\jquery.fancybox.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\css\\all.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\css\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\css\\fontawesome.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.html",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.html"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400d41d.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-brands-400d41d.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.html",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.html"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400d41d.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-regular-400d41d.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.html",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.html"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900d41d.eot",
+      "PackagePath": "staticwebassets\\assets\\plugins\\fontawesome\\webfonts\\fa-solid-900d41d.eot"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\mcustomscroll\\jquery.mCustomScrollbar.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\mcustomscroll\\jquery.mCustomScrollbar.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\mcustomscroll\\jquery.mCustomScrollbar.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\mcustomscroll\\jquery.mCustomScrollbar.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\mcustomscroll\\mCSB_buttons.html",
+      "PackagePath": "staticwebassets\\assets\\plugins\\mcustomscroll\\mCSB_buttons.html"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\slimscroll\\jquery.slimscroll.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\slimscroll\\jquery.slimscroll.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\swiper\\swiper.min.css",
+      "PackagePath": "staticwebassets\\assets\\plugins\\swiper\\swiper.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\assets\\plugins\\swiper\\swiper.min.js",
+      "PackagePath": "staticwebassets\\assets\\plugins\\swiper\\swiper.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Chat\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Chat.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Chat.props",
+      "PackagePath": "build\\Chat.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Chat.props",
+      "PackagePath": "buildMultiTargeting\\Chat.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Chat.props",
+      "PackagePath": "buildTransitive\\Chat.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
