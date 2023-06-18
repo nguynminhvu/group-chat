@@ -1,4 +1,5 @@
-﻿using Data.ViewModel.User;
+﻿using Data.ViewModel.Account;
+using Data.ViewModel.User;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interface;
 using Utilities.FileHelper;
@@ -16,33 +17,46 @@ namespace Chat.Controllers
 			_accountService = accountService;
 		}
 
-		[HttpPost("SignUpUser")]
-		public async Task<IActionResult> SignUpUser(UserControllerViewModel ucvm)
+		[HttpPost]
+		public async Task<IActionResult> SignUp(AccountCreateModel acm)
 		{
 			string[] permittedExtensions = { ".png", ".jpg", ".jpeg" };
-			if (ModelState.IsValid || !ModelState.IsValid)
+			if (ModelState.IsValid)
 			{
+				if (acm.Password != acm.PasswordConfirm)
+				{
+					ModelState.AddModelError("PasswordConfirm", "Two password not equal");
+					return View(acm);
+				}
+				if (await _accountService.CheckEmailExist(acm.Email) is false)
+				{
+					ModelState.AddModelError("Email", "Email already exist");
+					return View(acm);
+				}
 				using (var memoryStream = new MemoryStream())
 				{
-					await ucvm.UserCreateModel.IFormFile.CopyToAsync(memoryStream);
+					await acm.IFormFile!.CopyToAsync(memoryStream);
 					//check file extension and signature
 					// Check the content length in case the file's only
 					// content was a BOM and the content is actually
 					// empty after removing the BOM.
 					if (memoryStream.Length == 0)
 					{
-						return RedirectToAction(nameof(SignUp), new { error = "Lỗi!! file không chứa thông tin nào" });
+						ModelState.AddModelError("IFormFile", "Image is required");
+						return View(acm);
 					}
-					if (!FileHelper.IsValidFileExtensionAndSignature(ucvm.UserCreateModel.IFormFile.FileName, memoryStream, permittedExtensions))
+					if (!FileHelper.IsValidFileExtensionAndSignature(acm.IFormFile.FileName, memoryStream, permittedExtensions))
 					{
-						return RedirectToAction("SignUp", new { error = "Lỗi!! Chỉ được upload file hình như png, jpg, jpeg" });
+						ModelState.AddModelError("IFormFile", "Lỗi!! Chỉ được upload file hình như png, jpg, jpeg");
+						return View(acm);
 					}
 				}
 
 				//check file size
-				if (ucvm.UserCreateModel.IFormFile.Length > 2097152)
+				if (acm.IFormFile.Length > 2097152)
 				{
-					return RedirectToAction("SignUp", new { error = "Lỗi!! Chỉ được upload file nhỏ hơn 2MB" });
+					ModelState.AddModelError("IFormFile", "Lỗi!! Chỉ được upload file nhỏ hơn 2MB");
+					return View(acm);
 				}
 				string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/UserAvatars");
 
@@ -52,34 +66,36 @@ namespace Chat.Controllers
 
 				//change file name
 
-				var ext = Path.GetExtension(ucvm.UserCreateModel.IFormFile.FileName).ToLowerInvariant();
+				var ext = Path.GetExtension(acm.IFormFile!.FileName).ToLowerInvariant();
 				var fileName = Path.GetRandomFileName();
 				fileName = Path.ChangeExtension(fileName, ext);
 				string fileNameWithPath = Path.Combine(path, fileName);
 
 				using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
 				{
-					ucvm.UserCreateModel.IFormFile.CopyTo(stream);
+					acm.IFormFile.CopyTo(stream);
 				}
 				string imageUrl = "Images/UserAvatars/" + fileName;
 
-				ucvm.UserCreateModel.ImageUrl = imageUrl;
-				var accountCreated = await _accountService.RegisterAccount(ucvm.AccountCreateModel);
+				acm.ImageUrl = imageUrl;
+				var accountCreated = await _accountService.RegisterAccount(acm);
 				if (accountCreated != null)
 				{
-					ucvm.UserCreateModel.AccId = accountCreated.Id;
-					var userCreated = await _userService.CreateUserAsync(ucvm.UserCreateModel);
+					acm.AccId = accountCreated.Id;
+					var userCreated = await _userService.CreateUserAsync(acm);
 					if (userCreated)
 					{
-						return RedirectToAction(nameof(Index), new { success = "success" });
+						TempData["success"] = "success";
+						return RedirectToAction(nameof(Login));
 					}
 				}
 			}
-			return RedirectToAction(nameof(SignUp), new { error = "fail to create account" });
+			ViewBag.error = "fail to create account";
+			return View(acm);
 		}
 
 
-		public async Task<IActionResult> SignUp(string error, string success)
+		public async Task<IActionResult> SignUp()
 		{
 			return View();
 		}
@@ -96,6 +112,31 @@ namespace Chat.Controllers
 			{
 				return RedirectToAction(nameof(Index), "Home");
 			}
+		}
+
+		public IActionResult Login()
+		{
+			ViewBag.success = TempData["success"];
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Login(AccountLoginModel alm)
+		{
+			if (ModelState.IsValid)
+			{
+				var rs = await _accountService.Login(alm);
+				if (rs != null)
+				{
+					var session = HttpContext.Session;
+					session.SetString("USER", rs.Id.ToString());
+					return RedirectToAction("Index", controllerName: "Home");
+				}
+				ModelState.AddModelError("Email", "Email or password invalid");
+				ModelState.AddModelError("Password", "Email or password invalid");
+				return View(alm);
+			}
+			return View(alm);
 		}
 	}
 }

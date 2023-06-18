@@ -1,10 +1,5 @@
-﻿using Data.Entities;
-using Data.ViewModel.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.ViewModel.Account;
+
 
 namespace Service.Interface
 {
@@ -12,5 +7,6 @@ namespace Service.Interface
 	{
 		public Task<AccountViewModel> Login(AccountLoginModel alm);
 		public Task<AccountViewModel> RegisterAccount(AccountCreateModel acm);
+		public Task<bool> CheckEmailExist(string email);
 	}
 }

@@ -10,3 +10,15 @@ C:\Users\ACER\Desktop\General\C#\.NET MVC Lamboro\Chat\Ultities\obj\Debug\net7.0
 C:\Users\ACER\Desktop\General\C#\.NET MVC Lamboro\Chat\Ultities\obj\Debug\net7.0\refint\Ultities.dll
 C:\Users\ACER\Desktop\General\C#\.NET MVC Lamboro\Chat\Ultities\obj\Debug\net7.0\Ultities.pdb
 C:\Users\ACER\Desktop\General\C#\.NET MVC Lamboro\Chat\Ultities\obj\Debug\net7.0\ref\Ultities.dll
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\bin\Debug\net7.0\Ultities.deps.json
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\bin\Debug\net7.0\Ultities.dll
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\bin\Debug\net7.0\Ultities.pdb
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.csproj.AssemblyReference.cache
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.AssemblyInfoInputs.cache
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.AssemblyInfo.cs
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.csproj.CoreCompileInputs.cache
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.dll
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\refint\Ultities.dll
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\Ultities.pdb
+C:\Users\ACER\Desktop\General\C#\group-chat\Chat\Ultities\obj\Debug\net7.0\ref\Ultities.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h3mCUEJ72a2VGAPFLPTeEp1OlcSIW0IM+t/mYsTdmS/2Tbrbh/mNfckgkAFUdaMq4Ayex4N2D48pUWDfXykaDA==",
+  "dgSpecHash": "ywnWT6WoTRv17m/OhEOngbWUzVz4ekbnnKfAUeBrD+SLBo7sWbG8Gf3L9k8UG6aQzcRy/ItzzFO2FGrf7DFLKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ACER\\Desktop\\General\\C#\\.NET MVC Lamboro\\Chat\\Repository\\Repository.csproj",
+  "projectFilePath": "C:\\Users\\ACER\\Desktop\\General\\C#\\group-chat\\Chat\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
