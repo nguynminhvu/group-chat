@@ -1,14 +1,9 @@
-﻿using Data.ViewModel.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.ViewModel.Account;
 
 namespace Service.Interface
 {
 	public interface IUserService
 	{
-		public Task<bool> CreateUserAsync(UserCreateModel ucm);
+		public Task<bool> CreateUserAsync(AccountCreateModel acm);
 	}
 }

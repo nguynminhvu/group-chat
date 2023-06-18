@@ -9,12 +9,16 @@ namespace Data.ViewModel.User
 {
 	public class UserErrorCreateModel
 	{
+		public string EmailError { get; set; } = null!;
+
+		public string PasswordError { get; set; } = null!;
+
+		public string PasswordConfirmError { get; set; } = null!;
+
 		public string FullnameError { get; set; } = null!;
 
 		public DateTime BirthdayError { get; set; }
 
-		public string ImageUrlError { get; set; } = null!;
 		public IFormFile IFormFileError { get; set; }
-		public string AccId { get; set; } = null!;
 	}
 }

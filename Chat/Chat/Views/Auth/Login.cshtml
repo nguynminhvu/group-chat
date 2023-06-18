@@ -1,9 +1,11 @@
-﻿@*
+﻿@using Data.ViewModel.Account;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 	Layout = "_LayoutAuth";
 }
+@model AccountLoginModel
 <div class="main-wrapper">
 
 	<div class="content align-items-center">
@@ -21,16 +23,18 @@
 							<h3>Log in</h3>
 							<p>Login with your Data that you entered during your Registration</p>
 						</div>
-						<form action="">
+						<form  asp-action="Login" asp-controller="Auth" method="post">
 							<div class="form-group">
 								<label>Your Email</label>
-								<input class="form-control form-control-lg group_formcontrol" name="email"
+								<input class="form-control form-control-lg group_formcontrol" asp-for="Email"
 									   type="email">
+									   <span style="font-size:80%; color:red" asp-validation-for="Email"></span>
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input class="form-control form-control-lg group_formcontrol" name="password"
-									   type="text">
+								<input class="form-control form-control-lg group_formcontrol" asp-for="Password"
+									   type="password">
+								<span style="font-size:80%; color:red" asp-validation-for="Password"></span>
 							</div>
 							<div class="form-group">
 								<label class="custom-check d-flex">

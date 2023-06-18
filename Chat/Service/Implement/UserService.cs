@@ -1,4 +1,5 @@
 ﻿using Data.Entities;
+using Data.ViewModel.Account;
 using Data.ViewModel.User;
 using Repository;
 using Service.Interface;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Service.Implement
 {
-	public class UserService:IUserService
+	public class UserService : IUserService
 	{
 		private IUnitOfWork _uow;
 
@@ -18,7 +19,7 @@ namespace Service.Implement
 		{
 			_uow = unitOfWork;
 		}
-		public async Task<bool> CreateUserAsync(UserCreateModel ucm)
+		public async Task<bool> CreateUserAsync(AccountCreateModel acm)
 		{
 			ImageSet imageSet = new ImageSet
 			{
@@ -30,16 +31,16 @@ namespace Service.Implement
 			{
 				Id = Guid.NewGuid().ToString(),
 				ImageSetId = imageSet.Id,
-				ImageUrl = ucm.ImageUrl,
+				ImageUrl = acm.ImageUrl!,
 				IsActive = true
 			};
 			await _uow.ImageRepository.AddAsync(image);
 			User user = new User
 			{
 				Id = Guid.NewGuid().ToString(),
-				Fullname = ucm.Fullname,
-				Birthday = ucm.Birthday,
-				AccId = ucm.AccId,
+				Fullname = acm.Fullname!,
+				Birthday = acm.Birthday!,
+				AccId = acm.AccId!,
 				ImageSetId = imageSet.Id,
 			};
 			await _uow.UserRepository.AddAsync(user);

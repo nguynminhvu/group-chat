@@ -1,11 +1,12 @@
-﻿@using Data.ViewModel.User;
+﻿@using Data.ViewModel.Account;
+@using Data.ViewModel.User;
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 	Layout = "_LayoutAuth";
 }
-@model UserControllerViewModel
+@model AccountCreateModel
 <div class="main-wrapper">
 
 	<div class="content align-items-center">
@@ -26,36 +27,42 @@
 								your Profile.
 							</p>
 						</div>
-						<form asp-controller="Auth" asp-action="SignUpUser" method="post" enctype="multipart/form-data">
+						<form asp-controller="Auth" asp-action="SignUp" method="post" enctype="multipart/form-data">
 							<div class="form-group">
 								<label>Fullname</label>
-								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.UserCreateModel.Fullname"
+								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.Fullname"
 									   type="text">
+								<span style="font-size:80%;color:red" asp-validation-for="@Model.Fullname"></span>
 							</div>
 							<div class="form-group">
 								<label>Email</label>
-								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.AccountCreateModel.Email"
+								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.Email"
 									   type="email">
+								<span style="font-size:80%;color:red" asp-validation-for="@Model.Email"></span>
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.AccountCreateModel.Password"
+								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.Password"
 									   type="password">
+								<span style="font-size:80%;color:red" asp-validation-for="@Model.Password"></span>
 							</div>
 							<div class="form-group">
 								<label>Confirm Password</label>
-								<input class="form-control form-control-lg group_formcontrol"
+								<input class="form-control form-control-lg group_formcontrol" asp-for="PasswordConfirm"
 									   type="password">
+								<span style="font-size:80%;color:red" asp-validation-for="PasswordConfirm"></span>
 							</div>
 							<div class="form-group">
 								<label>Birthday</label>
-								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.UserCreateModel.Birthday"
+								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.Birthday"
 									   type="date">
+								<span style="font-size:80%;color:red" asp-validation-for="@Model.Birthday"></span>
 							</div>
 							<div class="form-group">
-								<label>Confirm Password</label>
-								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.UserCreateModel.IFormFile"
+								<label>Image</label>
+								<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.IFormFile"
 									   type="file">
+								<span style="font-size:80%;color:red" asp-validation-for="@Model.IFormFile"></span>
 							</div>
 							<div class="form-group">
 								<label class="custom-check d-flex flex-wrap">

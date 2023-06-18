@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.Entities;
 using Data.ViewModel.Account;
+using Data.ViewModel.User;
 using Repository;
 using Service.Implement;
 using Service.Interface;
@@ -23,6 +24,11 @@ namespace Service.Implement
 			_uow = unitOfWork;
 		}
 
+		public async Task<bool> CheckEmailExist(string email)
+		{
+			return await _uow.AccountRepository.FirstOrDefaultAsync(x => x.Email.Equals(email)) == null ? true : false;
+		}
+
 		public async Task<AccountViewModel> Login(AccountLoginModel alm)
 		{
 			var account = await _uow.AccountRepository.FirstOrDefaultAsync(x => x.Email.Equals(alm.Email) && x.Password.Equals(x.Password) && x.IsActive);
@@ -35,14 +41,14 @@ namespace Service.Implement
 
 		public async Task<AccountViewModel> RegisterAccount(AccountCreateModel acm)
 		{
-			var account = await _uow.AccountRepository.FirstOrDefaultAsync(x => x.Email.Equals(acm));
+			var account = await _uow.AccountRepository.FirstOrDefaultAsync(x => x.Email.Equals(acm.AccId!));
 			if (account == null)
 			{
 				Account acc = new Account
 				{
 					Id = Guid.NewGuid().ToString(),
-					Email = acm.Email,
-					Password = acm.Password,
+					Email = acm.Email!,
+					Password = acm.Password!,
 					IsActive = true
 				};
 				await _uow.AccountRepository.AddAsync(acc);
