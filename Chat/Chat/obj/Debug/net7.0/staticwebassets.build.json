@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "F51yoUWAQILkEtaPEIoVKss+XRx19GJ4CbjrLGUyxGA=",
+  "Hash": "qRpKTxQkMCRQ469sTGQerRjNmRV8Co7XgvOPm5YklHU=",
   "Source": "Chat",
   "BasePath": "_content/Chat",
   "Mode": "Default",
@@ -1239,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\UserAvatars\\3q0tkotw.png"
+    },
+    {
+      "Identity": "C:\\Users\\ACER\\Desktop\\General\\C#\\group-chat\\Chat\\Chat\\wwwroot\\Images\\UserAvatars\\aoo3rwjg.png",
+      "SourceId": "Chat",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACER\\Desktop\\General\\C#\\group-chat\\Chat\\Chat\\wwwroot\\",
+      "BasePath": "_content/Chat",
+      "RelativePath": "Images/UserAvatars/aoo3rwjg.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\UserAvatars\\aoo3rwjg.png"
     },
     {
       "Identity": "C:\\Users\\ACER\\Desktop\\General\\C#\\group-chat\\Chat\\Chat\\wwwroot\\Images\\UserAvatars\\bwx40uzj.png",
