@@ -1,22 +1,20 @@
-﻿using Data.Entities;
+﻿using AutoMapper;
+using Data.Entities;
 using Data.ViewModel.Account;
 using Data.ViewModel.User;
 using Repository;
 using Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Implement
 {
 	public class UserService : IUserService
 	{
+		private IMapper _mapper;
 		private IUnitOfWork _uow;
 
-		public UserService(IUnitOfWork unitOfWork)
+		public UserService(IUnitOfWork unitOfWork, IMapper mapper)
 		{
+			_mapper = mapper;
 			_uow = unitOfWork;
 		}
 		public async Task<bool> CreateUserAsync(AccountCreateModel acm)
@@ -45,6 +43,20 @@ namespace Service.Implement
 			};
 			await _uow.UserRepository.AddAsync(user);
 			return await _uow.SaveChanges() > 0 ? true : false;
+		}
+
+		public async Task<ProfileViewModel> GetUserByAccId(Guid accId)
+		{
+			var user = await _uow.UserRepository.FirstOrDefaultAsync(x => x.AccId.Equals(accId.ToString()), x => x.ImageSet, x => x.Acc);
+			var image = await _uow.ImageRepository.FirstOrDefaultAsync(x => x.ImageSetId.Equals(user.ImageSetId));
+			return new ProfileViewModel()
+			{
+				AccId = accId.ToString(),
+				Birthday = user.Birthday,
+				Email = user.Acc.Email,
+				Fullname = user.Fullname,
+				ImageUrl = image.ImageUrl
+			};
 		}
 	}
 

@@ -1,9 +1,5 @@
 ﻿using Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.ViewModel.Account;
 
 namespace Data.ViewModel.User
 {
@@ -19,5 +15,8 @@ namespace Data.ViewModel.User
 
 		public string AccId { get; set; } = null!;
 
+		public virtual AccountViewModel Acc { get; set; } = null!;
+
+		public virtual ImageSet ImageSet { get; set; } = null!;
 	}
 }
