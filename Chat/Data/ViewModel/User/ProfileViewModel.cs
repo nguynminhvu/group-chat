@@ -2,7 +2,6 @@
 {
     public class ProfileViewModel
     {
-     
 
         public string Fullname { get; set; } = null!;
 
@@ -11,7 +10,6 @@
 
         public string AccId { get; set; }
         public string ImageUrl { get; set; }
-
 
     }
 }

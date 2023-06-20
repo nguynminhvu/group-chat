@@ -1,17 +1,13 @@
 ﻿using Data.ViewModel.ChatRoom;
 using Data.ViewModel.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Data.ViewModel.HomeController
 {
-    public class HomeControllerModel
-    {
-        public ProfileViewModel UserViewModel { get; set; }
-        public ChatRoomCreateModel ChatRoomCreateModel { get; set; }
+	public class HomeControllerModel
+	{
+		public ProfileViewModel ProfileViewModel { get; set; }
+		public ChatRoomCreateModel ChatRoomCreateModel { get; set; }
+		public List<ChatRoomViewModel> ChatRooms { get; set; }
 
-    }
+	}
 }

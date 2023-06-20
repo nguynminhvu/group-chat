@@ -4,8 +4,9 @@
 *@
 @{
 	Layout = "_Layout";
-	ViewBag.Avatar = Model.UserViewModel.ImageUrl;
+	ViewBag.Avatar = Model.ProfileViewModel.ImageUrl;
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 @model HomeControllerModel
 <div class="sidebar-group left-sidebar chat_sidebar">
@@ -21,12 +22,13 @@
 					<ul>
 						<li>
 							<a href="#" data-bs-toggle="modal" data-bs-target="#add-new-group">
-								<span class="material-icons group-add-btn">group_add</span>
+								<i class="fas fa-plus"></i>
 							</a>
 						</li>
-						<li>
-							<a href="#" data-bs-toggle="modal" data-bs-target="#add-user">
-								<i class="fas fa-plus"></i>
+						<li class="list-inline-item dream_profile_menu" data-bs-toggle="tooltip"
+							data-bs-placement="bottom" title="Profile">
+							<a href="javascript:void(0)" class="btn btn-outline-light">
+								<i class="fas fa-user"></i>
 							</a>
 						</li>
 					</ul>
@@ -51,21 +53,25 @@
 				</div>
 
 				<ul class="user-list mt-2">
-					<li class="user-list-item">
-						<div class="avatar avatar-online">
-							<img src="~/assets/img/avatar/avatar-8.jpg" class="rounded-circle" alt="image">
-						</div>
-						<div class="users-list-body">
-							<div>
-								<h5>Regina Dickerson</h5>
-								<p>It seems logical that the</p>
+					@foreach(var chat in Model.ChatRooms)
+					{
+						<li class="user-list-item">
+							<div class="avatar avatar-online">
+								<img src="~/assets/img/avatar/avatar-8.jpg" class="rounded-circle" alt="image">
 							</div>
-							<div class="last-chat-time">
-								<small class="text-muted">05 min</small>
-								<div class="new-message-count">11</div>
+							<div class="users-list-body">
+								<div>
+									<h5>@chat.Name</h5>
+									<p></p>
+								</div>
+								<div class="last-chat-time">
+									<small class="text-muted"></small>
+									<div class="new-message-count"></div>
+								</div>
 							</div>
-						</div>
-					</li>
+						</li>
+					}
+					
 					<li class="user-list-item">
 						<div>
 							<div class="avatar avatar-away">
@@ -270,12 +276,7 @@
 							<i class="fas fa-video"></i>
 						</a>
 					</li>
-					<li class="list-inline-item dream_profile_menu" data-bs-toggle="tooltip"
-						data-bs-placement="bottom" title="Profile">
-						<a href="javascript:void(0)" class="btn btn-outline-light">
-							<i class="fas fa-user"></i>
-						</a>
-					</li>
+
 					<li class="list-inline-item">
 						<a class="btn btn-outline-light no-bg" href="#" data-bs-toggle="dropdown">
 							<i class="fas fa-ellipsis-h"></i>
@@ -703,239 +704,51 @@
 				<div class="mt-0 right_sidebar_logo">
 					<div class="text-center mb-2 right-sidebar-profile">
 						<figure class="avatar avatar-xl mb-3">
-							<img src="~/assets/img/avatar/avatar-2.jpg" class="rounded-circle" alt="image">
+							<img src="~/@Model.ProfileViewModel.ImageUrl" class="rounded-circle" alt="image">
 						</figure>
-						<h5 class="profile-name">Scott Albright</h5>
+						<h5 class="profile-name">@Model.ProfileViewModel.Fullname</h5>
 						<div class="online-profile">
 							<span>online</span>
 						</div>
 					</div>
 					<div>
 						<div class="about-media-tabs">
-							<nav>
-								<div class="nav nav-tabs justify-content-center" id="nav-tab">
-									<a class="nav-item nav-link active" id="nav-home-tab"
-									   data-bs-toggle="tab" href="#about">About</a>
-									<a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-									   href="#media">Media</a>
+
+							<div class="profile-info">
+								<div class="text-center mb-4">
+									<p class="info-title mb-0">Email</p>
+									<span class="info-text">@Model.ProfileViewModel.Email</span>
 								</div>
-							</nav>
-							<div class="tab-content" id="nav-tabContent">
-								<div class="tab-pane fade show active" id="about">
-									<p>
-										If several languages coalesce, the grammar of the resulting language
-										is more simple and regular than that of the individual.
-									</p>
-									<div class="member-details">
-										<ul>
-											<li>
-												<h6>Phone</h6>
-												<span>555-555-21541</span>
-											</li>
-											<li>
-												<h6>Nick Name</h6>
-												<span>Alberywo</span>
-											</li>
-											<li>
-												<h6>Email</h6>
-												<span>
-													<a href="https://dreamschat.dreamguystech.com/cdn-cgi/l/email-protection"
-													   class="__cf_email__"
-													   data-cfemail="a8e9c4cacddad1dfc7e8cfc5c9c1c486cbc7c5">[email&#160;protected]</a>
-												</span>
-											</li>
-										</ul>
-									</div>
-									<div class="social-media-col">
-										<h6>Social media accounts</h6>
-										<ul>
-											<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-											<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-											<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-											<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-										</ul>
-									</div>
-									<div class="settings-col">
-										<h6>Settings</h6>
-										<ul>
-											<li class="d-flex align-items-center">
-												<label class="switch">
-													<input type="checkbox" checked>
-													<span class="slider round"></span>
-												</label>
-												<div>
-													<span>Block</span>
-												</div>
-											</li>
-											<li class="d-flex align-items-center">
-												<label class="switch">
-													<input type="checkbox">
-													<span class="slider round"></span>
-												</label>
-												<div>
-													<span>Mute</span>
-												</div>
-											</li>
-											<li class="d-flex align-items-center">
-												<label class="switch">
-													<input type="checkbox">
-													<span class="slider round"></span>
-												</label>
-												<div>
-													<span>Get notification</span>
-												</div>
-											</li>
-										</ul>
-									</div>
+								<div class="text-center mb-4">
+									<p class="info-title mb-0">Birthday</p>
+									<span class="info-text">@Model.ProfileViewModel.Birthday.ToString("dd/MM/yyyy")</span>
 								</div>
-								<div class="tab-pane fade" id="media">
-									<div class="file-download-col">
-										<ul>
-											<li>
-												<div class="image-download-col">
-													<a href="~/assets/img/chat-download.jpg"
-													   data-fancybox="gallery" class="fancybox">
-														<img src="~/assets/img/chat-download.jpg" alt>
-													</a>
-													<div class="download-action d-flex align-items-center">
-														<div>
-															<a href="#">
-																<i class="fas fa-cloud-download-alt"></i>
-															</a>
-														</div>
-														<div>
-															<a href="#">
-																<i class="fas fa-ellipsis-h"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="image-download-col">
-													<a href="~/assets/img/chat-download.jpg"
-													   data-fancybox="gallery" class="fancybox">
-														<img src="~/assets/img/chat-download.jpg" alt>
-													</a>
-													<div class="download-action d-flex align-items-center">
-														<div>
-															<a href="#">
-																<i class="fas fa-cloud-download-alt"></i>
-															</a>
-														</div>
-														<div>
-															<a href="#">
-																<i class="fas fa-ellipsis-h"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="image-download-col">
-													<a href="~/assets/img/chat-download.jpg"
-													   data-fancybox="gallery" class="fancybox">
-														<img src="~/assets/img/chat-download.jpg" alt>
-													</a>
-													<div class="download-action d-flex align-items-center">
-														<div>
-															<a href="#">
-																<i class="fas fa-cloud-download-alt"></i>
-															</a>
-														</div>
-														<div>
-															<a href="#">
-																<i class="fas fa-ellipsis-h"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="image-download-col">
-													<a href="~/assets/img/chat-download.jpg"
-													   data-fancybox="gallery" class="fancybox">
-														<img src="~/assets/img/chat-download.jpg" alt>
-													</a>
-													<div class="download-action d-flex align-items-center">
-														<div>
-															<a href="#">
-																<i class="fas fa-cloud-download-alt"></i>
-															</a>
-														</div>
-														<div>
-															<a href="#">
-																<i class="fas fa-ellipsis-h"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="image-download-col">
-													<a href="~/assets/img/chat-download.jpg"
-													   data-fancybox="gallery" class="fancybox">
-														<img src="~/assets/img/chat-download.jpg" alt>
-													</a>
-													<div class="download-action d-flex align-items-center">
-														<div>
-															<a href="#">
-																<i class="fas fa-cloud-download-alt"></i>
-															</a>
-														</div>
-														<div>
-															<a href="#">
-																<i class="fas fa-ellipsis-h"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li>
-												<div class="image-download-col">
-													<a href="~/assets/img/chat-download.jpg"
-													   data-fancybox="gallery" class="fancybox">
-														<img src="~/assets/img/chat-download.jpg" alt>
-													</a>
-													<div class="download-action d-flex align-items-center">
-														<div>
-															<a href="#">
-																<i class="fas fa-cloud-download-alt"></i>
-															</a>
-														</div>
-														<div>
-															<a href="#">
-																<i class="fas fa-ellipsis-h"></i>
-															</a>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="full-width text-center">
-												<a href="#" class="load-more-btn">
-													More 154 Files <i class="fas fa-sort-down"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
+								<ul class="social-nav p-0 mb-0 text-center">
+									<li>
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-linkedin-in"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="report-col">
-				<ul>
-					<li><a href="#"><span class="material-icons">report_problem</span> Report Chat</a></li>
-					<li><a href="#"><span><i class="far fa-trash-alt"></i></span> Delete Chat</a></li>
-				</ul>
-			</div>
 		</div>
 	</div>
 </div>
 
-	</div>
 
 
 <div class="modal fade" id="add-user">
@@ -1051,36 +864,35 @@
 				<form asp-action="CreateChatRoom" asp-controller="Home" method="post">
 					<div class="form-group">
 						<label>Group Name</label>
-						<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.ChatRoomCreateModel.Name"
+						<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.ChatRoomCreateModel.Name" required
 							   type="text">
 					</div>
-					<div class="form-group">
-						<label>Secret Key</label>
-						<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.ChatRoomCreateModel.Secret"
-							   type="text">
+					@*<div class="form-group">
+					<label>Secret Key</label>
+					<input placeholder="Optional" class="form-control form-control-lg group_formcontrol" asp-for="@Model.ChatRoomCreateModel.Secret"
+					type="text">
+					</div>*@
+					@*<div class="form-group">
+					<div class="d-flex align-items-center">
+					<label class="custom-radio">
+					Private Group
+					<input type="checkbox" asp-for="ChatRoomCreateModel.IsPrivate">
+					<span class="checkmark"></span>
+					</label>
 					</div>
-					<div class="form-group">
-						<div class="d-flex align-items-center">
-					
-							<label class="custom-radio">
-								Public Group
-								<input type="checkbox" asp-for="ChatRoomCreateModel.IsPrivate">
-								<span class="checkmark"></span>
-							</label>
+					</div>*@
+
+					<div class="form-row profile_form text-end float-end m-0 align-items-center">
+
+						<div class="cancel-btn me-4">
+							<a href="#" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-block newgroup_create mb-0">
+								Create Room
+							</button>
 						</div>
 					</div>
-				
-				<div class="form-row profile_form text-end float-end m-0 align-items-center">
-
-					<div class="cancel-btn me-4">
-						<a href="#" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
-					</div>
-					<div>
-						<button type="submit" class="btn btn-block newgroup_create mb-0">
-							Create Room
-						</button>
-					</div>
-				</div>
 				</form>
 			</div>
 		</div>
@@ -1231,7 +1043,6 @@
 	</div>
 </div>
 
-
 <div class="modal fade" id="voice_call" role="document">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content voice_content">
@@ -1260,3 +1071,25 @@
 		</div>
 	</div>
 </div>
+@section Scripts{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	@if (ViewBag.error != null)
+	{
+		<script>
+			iziToast.error({
+				title: 'Error',
+				message: '@ViewBag.Error',
+			});
+		</script>
+
+	}
+	@if (ViewBag.success != null)
+	{
+		<script>
+			iziToast.success({
+				title: 'OK',
+				message: '@ViewBag.success',
+			});
+		</script>
+	}
+}

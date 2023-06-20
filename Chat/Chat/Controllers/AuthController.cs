@@ -103,15 +103,15 @@ namespace Chat.Controllers
 		public async Task<IActionResult> Index(string error, string succes)
 		{
 			var session = HttpContext.Session;
-			var token = session.GetString("USER");
-			if (token == null)
+			var token = session.GetString("Token");
+			if (token != null)
 			{
-				return View();
+				if (await _accountService.CheckToken(token) != null)
+				{
+					return RedirectToAction(nameof(Index), "Home");
+				}
 			}
-			else
-			{
-				return RedirectToAction(nameof(Index), "Home");
-			}
+			return RedirectToAction("Login", controllerName: "Auth");
 		}
 
 		public IActionResult Login()
@@ -129,7 +129,7 @@ namespace Chat.Controllers
 				if (rs != null)
 				{
 					var session = HttpContext.Session;
-					session.SetString("USER", rs.Id.ToString());
+					session.SetString("Token", rs);
 					return RedirectToAction("Index", controllerName: "Home");
 				}
 				ModelState.AddModelError("Email", "Email or password invalid");
