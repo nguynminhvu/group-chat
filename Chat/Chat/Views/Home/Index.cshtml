@@ -312,7 +312,8 @@
 		</div>
 		<div class="chat-body">
 			<div class="messages">
-				@foreach (var message in Model.MessageViewModel)
+				@if((@Model.ChatRooms.Count>0) && Model.ChatRoomCurrentViewModel!.Messages!!=null!){
+				@foreach (var message in Model.ChatRoomCurrentViewModel.Messages)
 				{
 					if (message.Sender.Equals(Model.ProfileViewModel.AccId))
 					{
@@ -416,9 +417,12 @@
 						</div>
 					}
 				}
+				}
 			</div>
 		</div>
 	</div>
+	@if (@Model.ChatRooms.Count > 0 )
+	{
 	<div class="chat-footer">
 		<form asp-action="CreateMessage" method="post">
 			<div class="smile-col">
@@ -429,7 +433,7 @@
 			</div>
 			<input type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.Message1" placeholder="Enter Message.....">
 			<input hidden value="@Model.ProfileViewModel.AccId" type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.SenderId" placeholder="Enter Message.....">
-			<input hidden value="@ViewBag.roomId" type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.RoomId" placeholder="Enter Message.....">
+			<input hidden value="@Model.ChatRoomCurrentViewModel!.Id" type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.RoomId" placeholder="Enter Message.....">
 			<div class="form-buttons">
 				<button class="btn send-btn" type="submit">
 					<span class="material-icons">send</span>
@@ -440,6 +444,7 @@
 			</div>
 		</form>
 	</div>
+	}
 </div>
 
 
@@ -592,7 +597,7 @@
 					<div class="cancel-btn me-4">
 						<a href="#" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
 					</div>
-					<div class>
+					<div>
 						<button type="button" class="btn btn-block newgroup_create mb-0" data-bs-dismiss="modal"
 								aria-label="Close">
 							Add to contacts
@@ -746,18 +751,17 @@
 					</ul>
 				</div>
 				<div class="form-row profile_form text-end float-end m-0 mt-3 align-items-center">
-
 					<div class="cancel-btn me-3">
 						<a href="#" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
 					</div>
-					<div class>
+					<div>
 						<button type="button" class="btn newgroup_create previous mb-0 me-3"
 								data-bs-toggle="modal" data-bs-target="#add-new-group" data-bs-dismiss="modal"
 								aria-label="Close">
 							Previous
 						</button>
 					</div>
-					<div class>
+					<div>
 						<button type="button" class="btn btn-block newgroup_create mb-0" data-bs-dismiss="modal"
 								aria-label="Close">
 							Create Group

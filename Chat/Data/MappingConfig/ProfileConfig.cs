@@ -16,6 +16,7 @@ namespace Data.MappingConfig
 			CreateMap<Account, AccountViewModel>();
 			CreateMap<User, ProfileViewModel>();
 			CreateMap<ChatRoom, ChatRoomViewModel>();
+			CreateMap<ChatRoom, ChatRoomCurrentViewModel>();
 			CreateMap<Message, MessageViewModel>();
 			CreateMap<Image, ImageViewModel>();
 			CreateMap<ImageSet, ImageSetViewModel>();

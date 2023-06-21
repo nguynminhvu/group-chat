@@ -1,0 +1,22 @@
+﻿
+using Data.ViewModel.Message;
+
+namespace Data.ViewModel.ChatRoom
+{
+	public class ChatRoomCurrentViewModel
+	{
+		public string Id { get; set; } = null!;
+
+		public string Name { get; set; } = null!;
+
+		public string Creator { get; set; } = null!;
+
+		public string Admin { get; set; } = null!;
+
+		public string? Secret { get; set; }
+
+		public bool IsPrivate { get; set; }
+
+		public virtual ICollection<MessageViewModel>? Messages { get; set; } = new List<MessageViewModel>();
+	}
+}

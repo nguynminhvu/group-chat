@@ -12,7 +12,7 @@ namespace Chat.Controllers
 		private IAccountService _accountService;
 		private IChatRoomService _chatRoomService;
 		private IUserService _userService;
-		private static HomeControllerModel hcm = new HomeControllerModel();
+
 		public HomeController(IUserService userService, IChatRoomService chatRoomService, IAccountService accountService)
 		{
 			_accountService = accountService;
@@ -42,19 +42,22 @@ namespace Chat.Controllers
 			var account = await CheckTokenController();
 			if (account != null)
 			{
+				HomeControllerModel hcm = new HomeControllerModel();
+				ChatRoomCurrentViewModel chatRoomCurrentViewModel = new ChatRoomCurrentViewModel();
 				var user = await _userService.GetUserByAccId(Guid.Parse(account.Id));
 				var chatRooms = await _chatRoomService.GetChatRooms(user.AccId);
-				if (roomId == null)
+
+				if (roomId == null && chatRooms.Count > 0)
 				{
 					roomId = chatRooms.FirstOrDefault(x => x.Creator.Equals(user.AccId))!.Id;
 				}
-				var messages = await _chatRoomService.GetMessages(roomId);
+				chatRoomCurrentViewModel = await _chatRoomService.GetChatRoom(roomId!);
+				hcm.ChatRoomCurrentViewModel = chatRoomCurrentViewModel;
 				hcm.ProfileViewModel = user;
 				hcm.ChatRooms = chatRooms;
-				hcm.MessageViewModel = messages;
+
 				ViewBag.error = TempData["error"];
 				ViewBag.success = TempData["success"];
-				ViewBag.roomId = roomId ?? chatRooms.FirstOrDefault(x => x.Creator.Equals(user.AccId))!.Id;
 				return View(hcm);
 			}
 			return RedirectToAction("Login", controllerName: "Auth");
@@ -66,13 +69,7 @@ namespace Chat.Controllers
 			var account = await CheckTokenController();
 			if (account != null)
 			{
-				var user = await _userService.GetUserByAccId(Guid.Parse(account.Id));
-				var chatRooms = await _chatRoomService.GetChatRooms(user.AccId);
-				var messages = await _chatRoomService.GetMessages(roomId);
-				hcm.MessageViewModel = messages;
-				hcm.ProfileViewModel = user;
-				hcm.ChatRooms = chatRooms;
-				return RedirectToAction(nameof(Index), controllerName: "Home", new { roomId  = roomId});
+				return RedirectToAction(nameof(Index), controllerName: "Home", new { roomId = roomId });
 			}
 			return RedirectToAction("Login", controllerName: "Auth");
 		}
@@ -87,7 +84,7 @@ namespace Chat.Controllers
 				if (created != null)
 				{
 					TempData["success"] = "created";
-					return RedirectToAction("Index", controllerName: "Home", created.Id);
+					return RedirectToAction("Index", controllerName: "Home", new { roomId = created.Id });
 				}
 			}
 			TempData["error"] = "can't create";
@@ -100,8 +97,7 @@ namespace Chat.Controllers
 			var account = await CheckTokenController();
 			if (account != null)
 			{
-				var created = await _chatRoomService.CreateMessage(homeControllerModel.SendMessageViewModel);
-				if (created != null)
+				if (await _chatRoomService.CreateMessage(homeControllerModel.SendMessageViewModel) != null)
 				{
 					return RedirectToAction("Index", controllerName: "Home", homeControllerModel.SendMessageViewModel.RoomId);
 				}
