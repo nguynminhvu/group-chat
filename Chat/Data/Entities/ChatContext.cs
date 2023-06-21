@@ -31,7 +31,7 @@ public partial class ChatContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=NGYNMINHVU\\SQLEXPRESS;Initial Catalog=Chat;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=ngynminhvu\\sqlexpress;Initial Catalog=Chat;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -106,6 +106,7 @@ public partial class ChatContext : DbContext
             entity.Property(e => e.Message1)
                 .HasMaxLength(700)
                 .HasColumnName("Message");
+            entity.Property(e => e.Sender).HasMaxLength(400);
 
             entity.HasOne(d => d.ChatRoom).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.ChatRoomId)
@@ -114,7 +115,6 @@ public partial class ChatContext : DbContext
 
             entity.HasOne(d => d.ImageSet).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.ImageSetId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Message_ImageSet");
         });
 
