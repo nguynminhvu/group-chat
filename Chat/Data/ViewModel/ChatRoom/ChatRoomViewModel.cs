@@ -1,5 +1,4 @@
-﻿using Data.ViewModel.Message;
-
+﻿
 namespace Data.ViewModel.ChatRoom
 {
     public class ChatRoomViewModel

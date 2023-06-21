@@ -20,10 +20,9 @@ namespace Service.Implement
 		{
 			_uow = unitOfWork;
 			_mapper = mapper;
-
 		}
 
-		public async Task<ChatRoomViewModel> CreateChatRoom(string accId, ChatRoomCreateModel ccm)
+		public async Task<ChatRoomCurrentViewModel> CreateChatRoom(string accId, ChatRoomCreateModel ccm)
 		{
 			ChatRoom chatRoom = new ChatRoom
 			{
@@ -36,23 +35,35 @@ namespace Service.Implement
 				Name = ccm.Name
 			};
 			await _uow.ChatRoomRepository.AddAsync(chatRoom);
+
+			ChatRoomUserMapping chatRoomUserMapping = new ChatRoomUserMapping
+			{
+				Id = Guid.NewGuid().ToString(),
+				AccId = accId,
+				ChatRoomId = chatRoom.Id,
+				IsActive = true
+			};
+
+			await _uow.ChatRoomUserMappingRepository.AddAsync(chatRoomUserMapping);
+
 			return await _uow.SaveChanges() > 0 ? await GetChatRoom(chatRoom.Id) : null!;
 		}
 
-		public async Task<ChatRoomViewModel> GetChatRoom(string id)
+		public async Task<ChatRoomCurrentViewModel> GetChatRoom(string id)
 		{
-			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(id));
-			return _mapper.Map<ChatRoomViewModel>(chatRoom);
+			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(id),x=>x.Messages);
+			return _mapper.Map<ChatRoomCurrentViewModel>(chatRoom);
 		}
 
-		public async Task<List<ChatRoomViewModel>> GetChatRooms(string creator)
+		public async Task<List<ChatRoomViewModel>> GetChatRooms(string accId)
 		{
-			return await _uow.ChatRoomRepository.GetEntitiesPredicate(x => x.Creator.Equals(creator)).ProjectTo<ChatRoomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+			var chatRooms = _uow.ChatRoomRepository.GetEntitiesPredicate(x => x.ChatRoomUserMappings.Any(x => x.AccId.Equals(accId)));
+			return await chatRooms.ProjectTo<ChatRoomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
 		}
 
 		public async Task<List<MessageViewModel>> GetMessages(string chatRoomId)
 		{
-			var rs = _uow.MessageRepository.GetEntitiesPredicate(x => x.ChatRoomId.Equals(chatRoomId)).OrderBy(x=>x.CreateDate);
+			var rs = _uow.MessageRepository.GetEntitiesPredicate(x => x.ChatRoomId.Equals(chatRoomId)).OrderBy(x => x.CreateDate);
 			return await rs.ProjectTo<MessageViewModel>(_mapper.ConfigurationProvider).ToListAsync();
 		}
 
