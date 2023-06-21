@@ -11,11 +11,13 @@ public partial class Message
 
     public string Message1 { get; set; } = null!;
 
-    public string ImageSetId { get; set; } = null!;
+    public string? ImageSetId { get; set; }
 
     public DateTime CreateDate { get; set; }
 
+    public string Sender { get; set; } = null!;
+
     public virtual ChatRoom ChatRoom { get; set; } = null!;
 
-    public virtual ImageSet ImageSet { get; set; } = null!;
+    public virtual ImageSet? ImageSet { get; set; }
 }

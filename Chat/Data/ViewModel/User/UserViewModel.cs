@@ -17,6 +17,5 @@ namespace Data.ViewModel.User
 
 		public virtual AccountViewModel Acc { get; set; } = null!;
 
-		public virtual ImageSet ImageSet { get; set; } = null!;
 	}
 }

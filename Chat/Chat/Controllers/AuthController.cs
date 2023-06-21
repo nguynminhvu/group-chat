@@ -1,5 +1,4 @@
 ﻿using Data.ViewModel.Account;
-using Data.ViewModel.User;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interface;
 using Utilities.FileHelper;

@@ -4,6 +4,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Data.Entities;
 using Data.ViewModel.ChatRoom;
+using Data.ViewModel.Message;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service.Interface;
@@ -47,6 +48,26 @@ namespace Service.Implement
 		public async Task<List<ChatRoomViewModel>> GetChatRooms(string creator)
 		{
 			return await _uow.ChatRoomRepository.GetEntitiesPredicate(x => x.Creator.Equals(creator)).ProjectTo<ChatRoomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+		}
+
+		public async Task<List<MessageViewModel>> GetMessages(string chatRoomId)
+		{
+			var rs = _uow.MessageRepository.GetEntitiesPredicate(x => x.ChatRoomId.Equals(chatRoomId)).OrderBy(x=>x.CreateDate);
+			return await rs.ProjectTo<MessageViewModel>(_mapper.ConfigurationProvider).ToListAsync();
+		}
+
+		public async Task<List<MessageViewModel>> CreateMessage(SendMessageViewModel smvc)
+		{
+			Message message = new Message
+			{
+				Id = Guid.NewGuid().ToString(),
+				ChatRoomId = smvc.RoomId,
+				Sender = smvc.SenderId,
+				CreateDate = DateTime.Now,
+				Message1 = smvc.Message1
+			};
+			await _uow.MessageRepository.AddAsync(message);
+			return await _uow.SaveChanges() > 0 ? await GetMessages(smvc.RoomId) : null!;
 		}
 	}
 }

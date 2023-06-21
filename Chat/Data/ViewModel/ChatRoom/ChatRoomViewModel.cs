@@ -1,4 +1,6 @@
-﻿namespace Data.ViewModel.ChatRoom
+﻿using Data.ViewModel.Message;
+
+namespace Data.ViewModel.ChatRoom
 {
     public class ChatRoomViewModel
     {
@@ -13,5 +15,5 @@
         public string? Secret { get; set; }
 
         public bool IsPrivate { get; set; }
-    }
+	}
 }
