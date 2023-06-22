@@ -19,6 +19,10 @@ public partial class ChatRoom
 
     public bool IsPrivate { get; set; }
 
+    public DateTime CreateDate { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
     public virtual ICollection<ChatRoomUserMapping> ChatRoomUserMappings { get; set; } = new List<ChatRoomUserMapping>();
 
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();

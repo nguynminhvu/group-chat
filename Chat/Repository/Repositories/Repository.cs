@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq.Expressions;
 
 
@@ -51,9 +52,14 @@ namespace Repository.Repositories
 			_entity.RemoveRange(entities);
 		}
 
-		public IQueryable<T> GetEntitiesPredicate(Expression<Func<T, bool>> predicate, Expression<Func<T, Object>> include)
+		public IQueryable<T> GetEntitiesPredicate(Expression<Func<T, bool>> predicate, params Expression<Func<T, Object>>[] includes)
 		{
-			return _entity.Where(predicate).Include(predicate);
+			var query = _entity.Where(predicate);
+			foreach (var item in includes)
+			{
+				query = query.Include(item);
+			}
+			return query;
 		}
 	}
 }

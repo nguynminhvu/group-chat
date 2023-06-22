@@ -1,5 +1,4 @@
 ﻿
-
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Data.Entities;
@@ -32,7 +31,9 @@ namespace Service.Implement
 				IsActive = true,
 				Secret = ccm.Secret,
 				IsPrivate = ccm.IsPrivate,
-				Name = ccm.Name
+				Name = ccm.Name,
+				CreateDate = DateTime.Now,
+				LastUpdate = DateTime.Now
 			};
 			await _uow.ChatRoomRepository.AddAsync(chatRoom);
 
@@ -51,13 +52,17 @@ namespace Service.Implement
 
 		public async Task<ChatRoomCurrentViewModel> GetChatRoom(string id)
 		{
-			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(id),x=>x.Messages);
+			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(id), x => x.Messages);
 			return _mapper.Map<ChatRoomCurrentViewModel>(chatRoom);
 		}
 
 		public async Task<List<ChatRoomViewModel>> GetChatRooms(string accId)
 		{
-			var chatRooms = _uow.ChatRoomRepository.GetEntitiesPredicate(x => x.ChatRoomUserMappings.Any(x => x.AccId.Equals(accId)));
+			var chatRooms = _uow.ChatRoomRepository.GetEntitiesPredicate(x => x.ChatRoomUserMappings.Any(x => x.AccId.Equals(accId)), x => x.Messages);
+			if (chatRooms != null && (await chatRooms.ToListAsync()).Count > 0)
+			{
+				chatRooms = chatRooms.OrderByDescending(x => x.LastUpdate);
+			}
 			return await chatRooms.ProjectTo<ChatRoomViewModel>(_mapper.ConfigurationProvider).ToListAsync();
 		}
 
@@ -69,6 +74,8 @@ namespace Service.Implement
 
 		public async Task<List<MessageViewModel>> CreateMessage(SendMessageViewModel smvc)
 		{
+			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(smvc.RoomId));
+			chatRoom.LastUpdate = DateTime.Now;
 			Message message = new Message
 			{
 				Id = Guid.NewGuid().ToString(),
@@ -79,6 +86,33 @@ namespace Service.Implement
 			};
 			await _uow.MessageRepository.AddAsync(message);
 			return await _uow.SaveChanges() > 0 ? await GetMessages(smvc.RoomId) : null!;
+		}
+
+		public async Task<bool> CheckSecretKey(string roomId, string secret)
+		{
+			var room = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(roomId));
+			if (!string.IsNullOrEmpty(room.Secret))
+			{
+				return room.Secret.Equals(secret);
+			}
+			return true;
+		}
+
+		public async Task<ChatRoomCurrentViewModel> JoinRoom(JoinRoomModel joinRoomModel)
+		{
+			if (await CheckSecretKey(joinRoomModel.RoomId, joinRoomModel.AccountId))
+			{
+				ChatRoomUserMapping chatRoomUserMapping = new ChatRoomUserMapping
+				{
+					Id = Guid.NewGuid().ToString(),
+					ChatRoomId = joinRoomModel.RoomId,
+					AccId = joinRoomModel.AccountId,
+					IsActive = true
+				};
+				await _uow.ChatRoomUserMappingRepository.AddAsync(chatRoomUserMapping);
+				return await _uow.SaveChanges() > 0 ? await GetChatRoom(joinRoomModel.RoomId) : null!;
+			}
+			return null!;
 		}
 	}
 }

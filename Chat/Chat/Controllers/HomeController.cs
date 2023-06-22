@@ -49,7 +49,7 @@ namespace Chat.Controllers
 
 				if (roomId == null && chatRooms.Count > 0)
 				{
-					roomId = chatRooms.FirstOrDefault(x => x.Creator.Equals(user.AccId))!.Id;
+					roomId = chatRooms.FirstOrDefault()!.Id;
 				}
 				chatRoomCurrentViewModel = await _chatRoomService.GetChatRoom(roomId!);
 				hcm.ChatRoomCurrentViewModel = chatRoomCurrentViewModel;
@@ -62,7 +62,6 @@ namespace Chat.Controllers
 			}
 			return RedirectToAction("Login", controllerName: "Auth");
 		}
-
 
 		public async Task<IActionResult> LoadChats(string roomId)
 		{
@@ -80,6 +79,11 @@ namespace Chat.Controllers
 			var account = await CheckTokenController();
 			if (account != null)
 			{
+				if (homeControllerModel.ChatRoomCreateModel.IsPrivate && string.IsNullOrEmpty(homeControllerModel.ChatRoomCreateModel.Secret))
+				{
+					TempData["error"] = "Secret key required";
+					return RedirectToAction("Index", controllerName: "Home");
+				}
 				var created = await _chatRoomService.CreateChatRoom(account.Id, homeControllerModel.ChatRoomCreateModel);
 				if (created != null)
 				{
@@ -103,6 +107,29 @@ namespace Chat.Controllers
 				}
 				TempData["error"] = "can't create chat";
 				return RedirectToAction("Index", controllerName: "Home");
+			}
+			return RedirectToAction("Login", controllerName: "Auth");
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> JoinRoom(HomeControllerModel homeControllerModel)
+		{
+			var account = await CheckTokenController();
+			if (account != null)
+			{
+				if (await _chatRoomService.CheckSecretKey(homeControllerModel.JoinRoomViewModel.RoomId, homeControllerModel.JoinRoomViewModel.AccountId) is false)
+				{
+					TempData["error"] = "Secret key is required";
+					return RedirectToAction("Index", controllerName: "Home");
+				}
+				var created = await _chatRoomService.JoinRoom(homeControllerModel.JoinRoomViewModel);
+				if (created != null)
+				{
+					TempData["success"] = "Join success, have fun";
+					return RedirectToAction(nameof(Index), controllerName: "Home", new { roomId = created.Id });
+				}
+				TempData["error"] = "can't join this room";
+				return RedirectToAction(nameof(Index), "Home");
 			}
 			return RedirectToAction("Login", controllerName: "Auth");
 		}
