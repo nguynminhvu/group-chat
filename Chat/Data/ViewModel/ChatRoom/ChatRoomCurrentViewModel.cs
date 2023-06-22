@@ -15,6 +15,10 @@ namespace Data.ViewModel.ChatRoom
 
 		public string? Secret { get; set; }
 
+		public DateTime CreateDate { get; set; }
+
+		public DateTime LastUpdate { get; set; }
+
 		public bool IsPrivate { get; set; }
 
 		public virtual ICollection<MessageViewModel>? Messages { get; set; } = new List<MessageViewModel>();

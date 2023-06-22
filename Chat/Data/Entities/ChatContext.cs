@@ -50,7 +50,13 @@ public partial class ChatContext : DbContext
 
             entity.Property(e => e.Id).HasMaxLength(400);
             entity.Property(e => e.Admin).HasMaxLength(400);
+            entity.Property(e => e.CreateDate)
+                .HasColumnType("datetime")
+                .HasColumnName("createDate");
             entity.Property(e => e.Creator).HasMaxLength(400);
+            entity.Property(e => e.LastUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("lastUpdate");
             entity.Property(e => e.Name).HasMaxLength(400);
             entity.Property(e => e.Secret).HasMaxLength(400);
         });
