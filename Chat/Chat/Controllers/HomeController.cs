@@ -117,7 +117,7 @@ namespace Chat.Controllers
 			var account = await CheckTokenController();
 			if (account != null)
 			{
-				if (await _chatRoomService.CheckSecretKey(homeControllerModel.JoinRoomViewModel.RoomId, homeControllerModel.JoinRoomViewModel.AccountId) is false)
+				if (await _chatRoomService.CheckSecretKey(homeControllerModel.JoinRoomViewModel.RoomId, homeControllerModel.JoinRoomViewModel.SecretKey) is false)
 				{
 					TempData["error"] = "Secret key is required";
 					return RedirectToAction("Index", controllerName: "Home");
@@ -133,5 +133,7 @@ namespace Chat.Controllers
 			}
 			return RedirectToAction("Login", controllerName: "Auth");
 		}
+
+
 	}
 }

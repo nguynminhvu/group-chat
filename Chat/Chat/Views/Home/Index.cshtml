@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @model HomeControllerModel
+<input hidden id="userEmail" value="@Model.ProfileViewModel.Email" />
 <div class="sidebar-group left-sidebar chat_sidebar">
 
 	<div id="chats" class="left-sidebar-wrap sidebar active slimscroll">
@@ -211,7 +212,7 @@
 			}
 		</div>
 		<div class="chat-body">
-			<div class="messages">
+			<div id="messagesChat" class="messages">
 				@if ((@Model.ChatRooms.Count > 0) && Model.ChatRoomCurrentViewModel!.Messages! != null!)
 				{
 					@foreach (var message in Model.ChatRoomCurrentViewModel.Messages)
@@ -325,18 +326,19 @@
 	@if (@Model.ChatRooms.Count > 0)
 	{
 		<div class="chat-footer">
-			<form asp-action="CreateMessage" method="post">
+			<form asp-action="CreateMessage" method="post" id="FormSendMessage">
 				<div class="smile-col">
 					<a href="#"><i class="far fa-smile"></i></a>
 				</div>
 				<div class="attach-col">
 					<a href="#"><i class="fas fa-paperclip"></i></a>
 				</div>
-				<input type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.Message1" placeholder="Enter Message....." required>
+				<input type="text" id="ContentChat" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.Message1" placeholder="Enter Message....." required>
 				<input hidden value="@Model.ProfileViewModel.AccId" type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.SenderId" placeholder="Enter Message.....">
-				<input hidden value="@Model.ChatRoomCurrentViewModel!.Id" type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.RoomId" placeholder="Enter Message.....">
+				<input id="RoomCurrentId" hidden value="@Model.ChatRoomCurrentViewModel!.Id" type="text" class="form-control chat_form" asp-for="@Model.SendMessageViewModel.RoomId" placeholder="Enter Message.....">
+				<input id="TimeChat" hidden value="@DateTime.Now.ToString("hh:mm tt")" />
 				<div class="form-buttons">
-					<button class="btn send-btn" type="submit">
+					<button onclick="SendMessage()" class="btn send-btn" type="button">
 						<span class="material-icons">send</span>
 					</button>
 				</div>
@@ -429,6 +431,10 @@
 					<div class="form-group">
 						<label>Group ID</label>
 						<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.JoinRoomViewModel.RoomId"
+							   type="text">
+						<br />
+						<label>Secret Key</label>
+						<input class="form-control form-control-lg group_formcontrol" asp-for="@Model.JoinRoomViewModel.SecretKey"
 							   type="text">
 						<input hidden asp-for="@Model.JoinRoomViewModel.AccountId" value="@Model.ProfileViewModel.AccId"
 							   type="text">
@@ -726,6 +732,11 @@
 		</div>
 	</div>
 </div>
+@if (@Model.ChatRoomCurrentViewModel != null)
+{
+	<input id="currents" value="@Model.ChatRoomCurrentViewModel!.Id" />
+
+}
 @section Scripts{
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -748,4 +759,77 @@
 			});
 		</script>
 	}
+	<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+	<script>
+		var accId = '@Model.ProfileViewModel.AccId';
+		var connetion = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+		connetion.start().then(function () {
+			console.log("connected");
+			connetion.invoke("SaveConnectionId", accId );
+				});
+		connetion.on("ReceiveMessage", function (message, email, roomId, timeChat) {
+			console.log(roomId);
+			if (roomId != null) {
+				var currentRoom = document.getElementById("currents").value;
+				if (String(currentRoom) == String(roomId)) {
+					document.getElementById("messagesChat").innerHTML += `<div class="chats">
+					<div class="chat-avatar">
+						<img src="/assets/img/avatar/avatar-8.jpg" class="rounded-circle dreams_chat"
+							 alt="image">
+					</div>
+					<div class="chat-content">
+						<div class="message-content">
+							${message}
+							<div class="chat-time">
+								<div>
+									<div class="time"><i class="fas fa-clock"></i>${timeChat}</div>
+								</div>
+							</div>
+						</div>
+						<div class="chat-profile-name">
+							<h6></h6>
+						</div>
+					</div>
+					<div class="chat-action-btns ms-3">
+						<div class="chat-action-col">
+							<a class="#" href="#" data-bs-toggle="dropdown">
+								<i class="fas fa-ellipsis-h"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end">
+								<a href="#" class="dropdown-item dream_profile_menu">
+									Copy <span>
+										<i class="far fa-copy"></i>
+									</span>
+								</a>
+								<a href="#" class="dropdown-item">
+									Save <span class="material-icons">save</span>
+								</a>
+								<a href="#" class="dropdown-item">
+									Forward <span>
+										<i class="fas fa-share"></i>
+									</span>
+								</a>
+								<a href="#" class="dropdown-item">
+									Delete <span>
+										<i class="far fa-trash-alt"></i>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>`
+				}
+			}
+			console.log(email + " says: " + message);
+		});
+		async function SendMessage() {
+			var email = document.getElementById("userEmail").value;
+			var message = document.getElementById("ContentChat").value;
+			var roomId = document.getElementById("RoomCurrentId").value;
+			var timeChat = document.getElementById("TimeChat").value;
+			connetion.invoke("SendAll", message, email, roomId, timeChat);
+			document.getElementById("FormSendMessage").submit();
+		};
+
+	</script>
 }

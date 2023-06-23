@@ -10,5 +10,6 @@ namespace Service.Interface
 		public Task<string> Login(AccountLoginModel alm);
 		public Task<AccountViewModel> RegisterAccount(AccountCreateModel acm);
 		public Task<bool> CheckEmailExist(string email);
+		public Task<Account> GetAccount(string id);
 	}
 }
