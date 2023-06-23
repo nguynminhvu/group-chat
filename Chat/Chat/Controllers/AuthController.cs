@@ -137,5 +137,11 @@ namespace Chat.Controllers
 			}
 			return View(alm);
 		}
+
+		public IActionResult LogOut()
+		{
+			HttpContext.Session.Remove("Token");
+			return RedirectToAction("Login", controllerName: "Auth");
+		}
 	}
 }

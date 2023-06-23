@@ -35,7 +35,7 @@ namespace Service.Implement
 			var token = tokenHandle.CreateToken(tokenDescription);
 			return tokenHandle.WriteToken(token);
 		}
-
+	
 		public async Task<Account> CheckToken(string token)
 		{
 			try

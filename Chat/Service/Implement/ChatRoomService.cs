@@ -100,7 +100,7 @@ namespace Service.Implement
 
 		public async Task<ChatRoomCurrentViewModel> JoinRoom(JoinRoomModel joinRoomModel)
 		{
-			if (await CheckSecretKey(joinRoomModel.RoomId, joinRoomModel.AccountId))
+			if (await CheckSecretKey(joinRoomModel.RoomId, joinRoomModel.SecretKey))
 			{
 				ChatRoomUserMapping chatRoomUserMapping = new ChatRoomUserMapping
 				{
