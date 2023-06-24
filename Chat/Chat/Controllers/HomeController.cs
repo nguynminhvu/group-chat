@@ -2,7 +2,6 @@
 using Data.ViewModel.ChatRoom;
 using Data.ViewModel.HomeController;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 using Service.Interface;
 
 namespace Chat.Controllers
@@ -12,7 +11,7 @@ namespace Chat.Controllers
 		private IAccountService _accountService;
 		private IChatRoomService _chatRoomService;
 		private IUserService _userService;
-
+		private static string URL = "http://localhost:5246/Home/JoinRoom";
 		public HomeController(IUserService userService, IChatRoomService chatRoomService, IAccountService accountService)
 		{
 			_accountService = accountService;
@@ -134,6 +133,21 @@ namespace Chat.Controllers
 			return RedirectToAction("Login", controllerName: "Auth");
 		}
 
-
+		public async Task<IActionResult> JoinRoom(string roomId)
+		{
+			var account = await CheckTokenController();
+			if (account != null)
+			{
+				var created = await _chatRoomService.JoinRoomQR(roomId, account.Id);
+				if (created != null)
+				{
+					TempData["success"] = "Join success, have fun";
+					return RedirectToAction(nameof(Index), controllerName: "Home", new { roomId = created.Id });
+				}
+				TempData["error"] = "can't join this room";
+				return RedirectToAction(nameof(Index), "Home");
+			}
+			return RedirectToAction("Login", controllerName: "Auth");
+		}
 	}
 }

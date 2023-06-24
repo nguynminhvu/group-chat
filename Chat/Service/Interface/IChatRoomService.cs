@@ -13,5 +13,6 @@ namespace Service.Interface
 		public Task<ChatRoomCurrentViewModel> GetChatRoom(string id);
 		public Task<bool> CheckSecretKey(string roomId, string secret);
 		public Task<ChatRoomCurrentViewModel> JoinRoom(JoinRoomModel joinRoomModel);
+		public Task<ChatRoomCurrentViewModel> JoinRoomQR(string roomId, string accId);
 	}
 }

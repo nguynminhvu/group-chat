@@ -17,5 +17,7 @@ namespace Data.ViewModel.HomeController
 
 		public JoinRoomModel JoinRoomViewModel { get; set; } // Join room
 
+		public string URL = "http://localhost:5246/Home/JoinRoom?";
+
 	}
 }
