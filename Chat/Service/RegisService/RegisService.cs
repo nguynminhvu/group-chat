@@ -15,7 +15,7 @@ namespace Service.RegisService
 		{
 			_cache = distributedCache;
 		}
-		public async Task<bool> SaveConnectionIdString(string accId, string connectionId)
+		public async Task<bool> SaveConnectionIdString(string accId,string connectionId )
 		{
 			var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddDays(1)).SetSlidingExpiration(TimeSpan.FromDays(2));
 			var toByte = System.Text.Encoding.UTF8.GetBytes(connectionId);

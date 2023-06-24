@@ -21,6 +21,7 @@ namespace Data.ViewModel.ChatRoom
 
 		public bool IsPrivate { get; set; }
 
+		public  List<string> AccMappings { get; set; } = new List<string>();
 		public virtual ICollection<MessageViewModel>? Messages { get; set; } = new List<MessageViewModel>();
 	}
 }

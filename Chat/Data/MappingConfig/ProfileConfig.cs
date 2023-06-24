@@ -20,6 +20,7 @@ namespace Data.MappingConfig
 			CreateMap<Message, MessageViewModel>();
 			CreateMap<Image, ImageViewModel>();
 			CreateMap<ImageSet, ImageSetViewModel>();
+			CreateMap<ChatRoomUserMapping, ChatRoomUserMappingModel>();
 		}
 	}
 }

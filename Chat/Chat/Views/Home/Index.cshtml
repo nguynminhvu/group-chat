@@ -22,6 +22,11 @@
 				<div class="add-section">
 					<ul>
 						<li>
+							<a href="#" data-bs-toggle="modal" data-bs-target="#add-user-qr">
+								<i class="fa-solid fa-qrcode"></i>
+							</a>
+						</li>
+						<li>
 							<a href="#" data-bs-toggle="modal" data-bs-target="#add-user">
 								<i class="fa-solid fa-users-viewfinder"></i>
 							</a>
@@ -455,6 +460,29 @@
 		</div>
 	</div>
 </div>
+@if (Model.ChatRooms.Count > 0 && Model.ChatRoomCurrentViewModel != null)
+{
+	var url = ("https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=http://localhost:5246/Home/JoinRoom?roomId=" + Model.ChatRoomCurrentViewModel.Id).ToString();
+	<div class="modal fade" id="add-user-qr">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						<span class="material-icons">person_add</span>Join Group
+					</h5>
+					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+						<span class="material-icons">close</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div style="display:flex;justify-content:center;text-align:center; width:100%;height:100%">
+						<img src="@url" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
 
 
 <div class="modal fade" id="add-contact">
@@ -734,7 +762,7 @@
 </div>
 @if (@Model.ChatRoomCurrentViewModel != null)
 {
-	<input id="currents" value="@Model.ChatRoomCurrentViewModel!.Id" />
+	<input hidden id="currents" value="@Model.ChatRoomCurrentViewModel!.Id" />
 
 }
 @section Scripts{
@@ -760,76 +788,90 @@
 		</script>
 	}
 	<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
-	<script>
-		var accId = '@Model.ProfileViewModel.AccId';
-		var connetion = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
-		connetion.start().then(function () {
-			console.log("connected");
-			connetion.invoke("SaveConnectionId", accId );
-				});
-		connetion.on("ReceiveMessage", function (message, email, roomId, timeChat) {
-			console.log(roomId);
-			if (roomId != null) {
-				var currentRoom = document.getElementById("currents").value;
-				if (String(currentRoom) == String(roomId)) {
-					document.getElementById("messagesChat").innerHTML += `<div class="chats">
-					<div class="chat-avatar">
-						<img src="/assets/img/avatar/avatar-8.jpg" class="rounded-circle dreams_chat"
-							 alt="image">
-					</div>
-					<div class="chat-content">
-						<div class="message-content">
-							${message}
-							<div class="chat-time">
-								<div>
-									<div class="time"><i class="fas fa-clock"></i>${timeChat}</div>
-								</div>
-							</div>
-						</div>
-						<div class="chat-profile-name">
-							<h6></h6>
-						</div>
-					</div>
-					<div class="chat-action-btns ms-3">
-						<div class="chat-action-col">
-							<a class="#" href="#" data-bs-toggle="dropdown">
-								<i class="fas fa-ellipsis-h"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-end">
-								<a href="#" class="dropdown-item dream_profile_menu">
-									Copy <span>
-										<i class="far fa-copy"></i>
-									</span>
-								</a>
-								<a href="#" class="dropdown-item">
-									Save <span class="material-icons">save</span>
-								</a>
-								<a href="#" class="dropdown-item">
-									Forward <span>
-										<i class="fas fa-share"></i>
-									</span>
-								</a>
-								<a href="#" class="dropdown-item">
-									Delete <span>
-										<i class="far fa-trash-alt"></i>
-									</span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>`
-				}
-			}
-			console.log(email + " says: " + message);
-		});
-		async function SendMessage() {
-			var email = document.getElementById("userEmail").value;
-			var message = document.getElementById("ContentChat").value;
-			var roomId = document.getElementById("RoomCurrentId").value;
-			var timeChat = document.getElementById("TimeChat").value;
-			connetion.invoke("SendAll", message, email, roomId, timeChat);
-			document.getElementById("FormSendMessage").submit();
-		};
+	@if (Model.ChatRoomCurrentViewModel != null)
+	{
+		<script>
+			//Ben controller sort lay chat room dau tien, current khong co => chatrooms=0
 
-	</script>
+			// Tao Connection
+			var accId = '@Model.ProfileViewModel.AccId';
+			var roomId='@Model.ChatRoomCurrentViewModel!.Id'
+			var connetion = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+			connetion.start().then(function () {
+				console.log("Connected");
+				//connetion.invoke("SaveConnectionId", accId);
+				connetion.invoke("AddConnectionGroupAsync", roomId);
+			});
+
+			// Lang nghe
+			connetion.on("GroupConnection", function (message, email, roomId, timeChat) {
+				if (roomId != null) {
+					var currentRoom = document.getElementById("currents").value;
+					if (String(currentRoom) == String(roomId)) {
+						document.getElementById("messagesChat").innerHTML += `<div class="chats">
+										<div class="chat-avatar">
+											<img src="/assets/img/avatar/avatar-8.jpg" class="rounded-circle dreams_chat"
+												 alt="image">
+										</div>
+										<div class="chat-content">
+											<div class="message-content">
+												${message}
+												<div class="chat-time">
+													<div>
+														<div class="time"><i class="fas fa-clock"></i>${timeChat}</div>
+													</div>
+												</div>
+											</div>
+											<div class="chat-profile-name">
+												<h6></h6>
+											</div>
+										</div>
+										<div class="chat-action-btns ms-3">
+											<div class="chat-action-col">
+												<a class="#" href="#" data-bs-toggle="dropdown">
+													<i class="fas fa-ellipsis-h"></i>
+												</a>
+												<div class="dropdown-menu dropdown-menu-end">
+													<a href="#" class="dropdown-item dream_profile_menu">
+														Copy <span>
+															<i class="far fa-copy"></i>
+														</span>
+													</a>
+													<a href="#" class="dropdown-item">
+														Save <span class="material-icons">save</span>
+													</a>
+													<a href="#" class="dropdown-item">
+														Forward <span>
+															<i class="fas fa-share"></i>
+														</span>
+													</a>
+													<a href="#" class="dropdown-item">
+														Delete <span>
+															<i class="far fa-trash-alt"></i>
+														</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>`
+					}
+				}
+				console.log(email + " says: " + message);
+			});
+
+			// Thuc hien hanh dong gui
+			async function SendMessage() {
+				var accId = '@Model.ProfileViewModel.AccId';
+				var email = document.getElementById("userEmail").value;
+				var message = document.getElementById("ContentChat").value;
+				var roomId = document.getElementById("RoomCurrentId").value;
+				var timeChat = document.getElementById("TimeChat").value;
+				var accConvert = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@Model.ChatRoomCurrentViewModel!.AccMappings));
+				//connetion.invoke("SendSpecification", message, email, roomId, timeChat, accConvert, accId);
+				connetion.invoke("SendGroupAsync", message, email, roomId, timeChat)
+				document.getElementById("FormSendMessage").submit();
+			};
+
+		</script>
+	}
 }

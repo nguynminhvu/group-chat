@@ -52,8 +52,19 @@ namespace Service.Implement
 
 		public async Task<ChatRoomCurrentViewModel> GetChatRoom(string id)
 		{
-			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(id), x => x.Messages);
-			return _mapper.Map<ChatRoomCurrentViewModel>(chatRoom);
+			var chatRoom = await _uow.ChatRoomRepository.FirstOrDefaultAsync(x => x.Id.Equals(id), x => x.Messages, x => x.ChatRoomUserMappings);
+			if (chatRoom != null)
+			{
+				List<string> AccIds = new List<string>();
+				foreach (var item in chatRoom.ChatRoomUserMappings)
+				{
+					AccIds.Add(item.AccId);
+				}
+				var chatRoomViewModel = _mapper.Map<ChatRoomCurrentViewModel>(chatRoom);
+				chatRoomViewModel.AccMappings = AccIds;
+				return chatRoomViewModel;
+			}
+			return null!;
 		}
 
 		public async Task<List<ChatRoomViewModel>> GetChatRooms(string accId)
@@ -113,6 +124,18 @@ namespace Service.Implement
 				return await _uow.SaveChanges() > 0 ? await GetChatRoom(joinRoomModel.RoomId) : null!;
 			}
 			return null!;
+		}
+		public async Task<ChatRoomCurrentViewModel> JoinRoomQR(string roomId, string accId)
+		{
+			ChatRoomUserMapping chatRoomUserMapping = new ChatRoomUserMapping
+			{
+				Id = Guid.NewGuid().ToString(),
+				ChatRoomId = roomId,
+				AccId = accId,
+				IsActive = true
+			};
+			await _uow.ChatRoomUserMappingRepository.AddAsync(chatRoomUserMapping);
+			return await _uow.SaveChanges() > 0 ? await GetChatRoom(roomId) : null!;
 		}
 	}
 }
